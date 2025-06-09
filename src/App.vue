@@ -114,6 +114,7 @@ export default {
       );
     });
 
+    return { inputUsername, Login, state, sendMessage, inputMessage, Logout };
     //   messagesRef.on("value", (snapshot) => {
     //     const data = snapshot.val();
     //     let messages = [];
@@ -129,8 +130,6 @@ export default {
     //     state.messages = messages;
     //   });
     // });
-
-    return { inputUsername, Login, state, sendMessage, inputMessage, Logout };
   },
 };
 </script>
