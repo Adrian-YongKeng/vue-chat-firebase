@@ -1,60 +1,3 @@
-<template>
-  <!-- prettier-ignore -->
-  <div class="view login" v-if="state.username === '' || state.username === null">
-    <form class="login-form" v-on:submit.prevent="Login">
-      <div class="form-inner">
-        <h1>Login to FireChat</h1>
-        <label for="username">Username</label>
-
-        <input
-          type="text"
-          v-model="inputUsername"
-          placeholder="Please enter your username ..."
-        />
-
-        <input type="submit" value="Login" />
-      </div>
-    </form>
-  </div>
-
-  <div class="view chat" v-else>
-    <header>
-      <button class="logout" @click="Logout">Logout</button>
-      <h1>Welcome, {{ state.username }}</h1>
-    </header>
-
-    <section class="chat-box">
-      <div
-        v-for="message in state.messages"
-        v-bind:key="message.key"
-        :class="
-          message.username == state.username
-            ? 'message current-user'
-            : 'message'
-        "
-      >
-        <div class="message-inner">
-          <div class="username">{{ message.username }}</div>
-
-          <div class="content">{{ message.content }}</div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <form @submit.prevent="sendMessage">
-        <input
-          type="text"
-          v-model="inputMessage"
-          placeholder="Write a message..."
-        />
-
-        <input type="submit" value="Send" />
-      </form>
-    </footer>
-  </div>
-</template>
-
 <script>
 import { onMounted, reactive, ref } from "vue";
 import db from "./db";
@@ -133,6 +76,63 @@ export default {
   },
 };
 </script>
+
+<template>
+  <!-- prettier-ignore -->
+  <div class="view login" v-if="state.username === '' || state.username === null">
+    <form class="login-form" v-on:submit.prevent="Login">
+      <div class="form-inner">
+        <h1>Login to FireChat</h1>
+        <label for="username">Username</label>
+
+        <input
+          type="text"
+          v-model="inputUsername"
+          placeholder="Please enter your username ..."
+        />
+
+        <input type="submit" value="Login" />
+      </div>
+    </form>
+  </div>
+
+  <div class="view chat" v-else>
+    <header>
+      <button class="logout" @click="Logout">Logout</button>
+      <h1>Welcome, {{ state.username }}</h1>
+    </header>
+
+    <section class="chat-box">
+      <div
+        v-for="message in state.messages"
+        v-bind:key="message.key"
+        :class="
+          message.username == state.username
+            ? 'message current-user'
+            : 'message'
+        "
+      >
+        <div class="message-inner">
+          <div class="username">{{ message.username }}</div>
+
+          <div class="content">{{ message.content }}</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <form @submit.prevent="sendMessage">
+        <input
+          type="text"
+          v-model="inputMessage"
+          placeholder="Write a message..."
+        />
+
+        <input type="submit" value="Send" />
+      </form>
+    </footer>
+  </div>
+</template>
 
 <style lang="scss">
 * {
